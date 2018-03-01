@@ -3,17 +3,15 @@
     <div class="smiley-list-container" fxLayout="column" fxLayoutGap="15px">
       <h2 class="mat-display-1">Feedback Town Hall Meeting</h2>
       <h3>Gib uns Dein Feedback zu unserem Town Hall Meeting.</h3>
-      <ng-template #hasEmotionalStatesTemplate>
-        <div class="emoji-container" [style.max-width]="emojisMaxWidth" fxLayoutAlign="center" fxLayout="row"
-          fxLayoutGap.xs="{{baseEmojiMargin - 20}}px"
-          fxLayoutGap.sm="{{baseEmojiMargin - 10}}px"
-          fxLayoutGap="{{baseEmojiMargin}}px">
-          <div [style.width.%]="relativeSize(emotionalState.count)" *ngFor="let emotionalState of dailyEmotionalStates"
-          matTooltip="Stimmen: {{emotionalState.count}} ({{relativeSize(emotionalState.count) | number:'1.0-1'}}%)">
-            <emoji-display [emojiCodePoint]="emotionalState.smileyCode"></emoji-display>
-          </div>
+      <div *ngIf="amountOfEmotions > 0" class="emoji-container" [style.max-width]="emojisMaxWidth" fxLayoutAlign="center" fxLayout="row"
+        fxLayoutGap.xs="{{baseEmojiMargin - 20}}px"
+        fxLayoutGap.sm="{{baseEmojiMargin - 10}}px"
+        fxLayoutGap="{{baseEmojiMargin}}px">
+        <div [style.width.%]="relativeSize(emotionalState.count)" *ngFor="let emotionalState of dailyEmotionalStates"
+        matTooltip="Stimmen: {{emotionalState.count}} ({{relativeSize(emotionalState.count) | number:'1.0-1'}}%)">
+          <emoji-display [emojiCodePoint]="emotionalState.smileyCode"></emoji-display>
         </div>
-      </ng-template>
+      </div>
       <div fxfLayout="row wrap" fxLayoutGap="20px">
         <button mat-raised-button class="select-emotion-button" [color]="selectedEmotionId == emotion.id ? 'primary' : 'default'"
         *ngFor="let emotion of activeEmotions" (click)="selectedEmotionId = emotion.id">
