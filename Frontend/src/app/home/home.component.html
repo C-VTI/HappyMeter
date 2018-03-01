@@ -1,10 +1,8 @@
 <div class="home-component" fxLayout.lt-md="column" fxLayout="row" fxLayoutGap="20px" *ngIf="activeEmotions && dailyEmotionalStates; else noDataTemplate">
   <div ngClass.gt-sm="large-smiley-list-container" >
     <div class="smiley-list-container" fxLayout="column" fxLayoutGap="15px">
-      <h2 class="mat-display-1">Heutige Gefühlslage ({{amountOfEmotions}} Teilnehmer)</h2>
-      <ng-container *ngIf="amountOfEmotions === 0; else hasEmotionalStatesTemplate">
-        <h3>Heute wurden noch keine Gefühlslagen erfasst</h3>
-      </ng-container>
+      <h2 class="mat-display-1">Feedback Town Hall Meeting</h2>
+      <h3>Gib uns Dein Feedback zu unserem Town Hall Meeting.</h3>
       <ng-template #hasEmotionalStatesTemplate>
         <div class="emoji-container" [style.max-width]="emojisMaxWidth" fxLayoutAlign="center" fxLayout="row"
           fxLayoutGap.xs="{{baseEmojiMargin - 20}}px"
@@ -16,7 +14,6 @@
           </div>
         </div>
       </ng-template>
-      <h2 class="mat-display-1">Wie fühlst Du dich?</h2>
       <div fxfLayout="row wrap" fxLayoutGap="20px">
         <button mat-raised-button class="select-emotion-button" [color]="selectedEmotionId == emotion.id ? 'primary' : 'default'"
         *ngFor="let emotion of activeEmotions" (click)="selectedEmotionId = emotion.id">
